@@ -4,18 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Will You Marry Me? ❤️</title>
-
     <style>
         body {
             margin: 0;
             padding: 0;
-            min-height: 100vh;
+            height: 100vh;
             background: linear-gradient(135deg, #ff758c, #ff7eb3);
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow-x: hidden;
+            overflow: hidden;
             text-align: center;
             color: #fff;
         }
@@ -27,17 +26,16 @@
             border-radius: 20px;
             box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
             border: 1px solid rgba(255, 255, 255, 0.18);
-            max-width: 500px;
+            max-width: 400px;
             width: 90%;
             z-index: 10;
-            margin: 30px 0;
         }
 
         h1 {
             font-size: 2.2rem;
             margin-bottom: 15px;
             color: #fff;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
 
         p {
@@ -62,7 +60,7 @@
             border-radius: 25px;
             cursor: pointer;
             transition: transform 0.2s ease, background 0.2s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
         #yes-btn {
@@ -81,17 +79,6 @@
             position: absolute;
         }
 
-        /* Friend's photo */
-        .friend-photo {
-            display: block;
-            width: 280px;
-            max-width: 100%;
-            height: auto;
-            margin: 20px auto 0;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
-        }
-
         /* Floating background hearts */
         .heart {
             position: absolute;
@@ -106,114 +93,56 @@
                 transform: translateY(100vh) scale(0.5);
                 opacity: 0;
             }
-
             50% {
                 opacity: 0.8;
             }
-
             100% {
                 transform: translateY(-10vh) scale(1.2);
                 opacity: 0;
             }
         }
-
-        /* Mobile */
-        @media (max-width: 600px) {
-            .container {
-                padding: 25px;
-            }
-
-            h1 {
-                font-size: 1.8rem;
-            }
-
-            p {
-                font-size: 1rem;
-            }
-
-            .friend-photo {
-                width: 250px;
-            }
-        }
     </style>
 </head>
-
 <body>
 
     <div class="container" id="card">
-
         <h1>My Dearest ❤️</h1>
-
-        <p>
-            From the moment we met, my life has been filled with so much joy and love.
-            I can't imagine my future without you by my side.
-            Will you marry me?
-        </p>
-
-        <!-- Friend's photo -->
-        <img src="i.png" alt="Friend's photo" class="friend-photo">
-
+        <p>From the moment we met, my life has been filled with so much joy and love. I can't imagine my future without you by my side. Will you marry me?</p>
         <div class="buttons">
             <button id="yes-btn" onclick="sayYes()">Yes! 💕</button>
             <button id="no-btn" onmouseover="moveNo()" onclick="moveNo()">No 🙈</button>
         </div>
-
     </div>
 
     <script>
-
-        // Make the "No" button run away
+        // Make the "No" button run away on hover/click
         function moveNo() {
             const noBtn = document.getElementById('no-btn');
-
-            const x = Math.random() *
-                (window.innerWidth - noBtn.offsetWidth - 100);
-
-            const y = Math.random() *
-                (window.innerHeight - noBtn.offsetHeight - 100);
-
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - 100);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - 100);
+            
             noBtn.style.position = 'fixed';
             noBtn.style.left = `${Math.max(20, x)}px`;
             noBtn.style.top = `${Math.max(20, y)}px`;
         }
 
-
-        // Action when "Yes" is clicked
+        // Action when she clicks "Yes"
         function sayYes() {
-
             const card = document.getElementById('card');
-
             card.innerHTML = `
                 <h1>She Said Yes! 🎉💍</h1>
-
-                <p>
-                    You just made me the happiest person in the entire world!
-                    I love you forever and always. ❤️🥂
-                </p>
-
-                <img src="i.jpg"
-                     alt="Friend's photo"
-                     class="friend-photo">
+                <p>You just made me the happiest person in the entire world! I love you forever and always. ❤️🥂</p>
             `;
-
             createConfetti();
         }
 
-
-        // Create floating hearts
+        // Create floating hearts dynamically in the background
         function createHeart() {
-
             const heart = document.createElement('div');
-
             heart.classList.add('heart');
             heart.innerHTML = '❤️';
-
-            heart.style.left =
-                Math.random() * window.innerWidth + 'px';
-
-            heart.style.animationDuration =
-                (Math.random() * 3 + 3) + 's';
-
+            heart.style.left = Math.random() * window.innerWidth + 'px';
+            heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
             document.body.appendChild(heart);
 
             setTimeout(() => {
@@ -222,53 +151,6 @@
         }
 
         setInterval(createHeart, 300);
-
-
-        // Simple confetti effect
-        function createConfetti() {
-
-            for (let i = 0; i < 100; i++) {
-
-                const confetti = document.createElement('div');
-
-                confetti.innerHTML = '🎉';
-
-                confetti.style.position = 'fixed';
-                confetti.style.left =
-                    Math.random() * window.innerWidth + 'px';
-
-                confetti.style.top =
-                    '-20px';
-
-                confetti.style.fontSize =
-                    (Math.random() * 15 + 10) + 'px';
-
-                confetti.style.zIndex = '100';
-
-                confetti.style.animation =
-                    `fall ${Math.random() * 3 + 2}s linear forwards`;
-
-                document.body.appendChild(confetti);
-
-                setTimeout(() => {
-                    confetti.remove();
-                }, 5000);
-            }
-        }
-
     </script>
-
-    <style>
-        @keyframes fall {
-            from {
-                transform: translateY(0) rotate(0deg);
-            }
-
-            to {
-                transform: translateY(110vh) rotate(720deg);
-            }
-        }
-    </style>
-
 </body>
 </html>
